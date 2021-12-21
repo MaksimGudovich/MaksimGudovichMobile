@@ -3,6 +3,7 @@ package pageObjects.nativePageObject;
 import entity.User;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 import pageObjects.BasePageObject;
 
@@ -21,7 +22,7 @@ public class BaseNativePage extends BasePageObject {
         this.registrationPage = new RegistrationPage(appiumDriver);
         this.loginPage = new LoginPage(appiumDriver);
         this.expensesInformationPage = new ExpensesInformationPage(appiumDriver);
-        PageFactory.initElements( new AppiumFieldDecorator(appiumDriver), this);
+        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
     }
 
     public void registrationUser(User user) {
@@ -31,6 +32,15 @@ public class BaseNativePage extends BasePageObject {
         registrationPage.registrationPasswordField.sendKeys(user.getPassword());
         registrationPage.registrationConfirmPasswordField.sendKeys(user.getPassword());
         registrationPage.regNewUserBtn.click();
+
+        //In some cases need to double-click on button
+        try {
+            if (registrationPage.regNewUserBtn.isDisplayed()) {
+                registrationPage.regNewUserBtn.click();
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("No need second click");
+        }
     }
 
     public void login(User user) {
@@ -38,5 +48,4 @@ public class BaseNativePage extends BasePageObject {
         loginPage.loginPasswordField.sendKeys(user.getPassword());
         loginPage.signInBtn.click();
     }
-
 }

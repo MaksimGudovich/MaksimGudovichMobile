@@ -16,7 +16,7 @@ public class NativeMobileTests extends BaseTest {
         baseNativePage.login(user);
         String actionBarText = baseNativePage.getExpensesInformationPage().getActionBarText().getText();
 
-        assert (actionBarText).equals("BudgetActivity") : "This is not the Budget Activity page";
+        assert (actionBarText).contains("Budget") : "This is not the Budget Activity page";
 
         System.out.println("Budget page is opened");
     }

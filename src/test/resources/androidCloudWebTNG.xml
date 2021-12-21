@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Epam mobile cloud android web testing Suite">
+    <parameter name="appType" value="web"/>
+    <parameter name="udid" value="RF8NB0B3TSL"/>
+    <parameter name="platformName" value="Android"/>
+    <parameter name="browserName" value="Chrome"/>
+    <test name="Cloud android web tests">
+        <groups>
+            <run>
+                <include name="web"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="scenarios.WebMobileTests"/>
+        </classes>
+    </test>
+</suite>
