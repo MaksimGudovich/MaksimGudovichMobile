@@ -6,9 +6,9 @@ import util.UserDataReader;
 
 public class NativeTestDataProvider {
 
-    @DataProvider(name = "User data from json")
-    public Object[][] getUserData() {
+    @DataProvider(name = "Native test data")
+    public Object[][] getNativeTestData() {
         User user = UserDataReader.getUserFromJson("src/test/resources/testUser.json");
-        return new Object[][] {{user}};
+        return new Object[][] {{user, "Budget"}};
     }
 }
